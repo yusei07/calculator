@@ -1,17 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  text-decoration: none;
-  list-style: none;
+*, *::before, *::after{
+  font-weight: normal;
   box-sizing: border-box;
+  font-family: var(--text-primary);
 }
 
 :root {
-  --text-primary: 'Poppins', sans-serif;
+  --text-primary: 'Space Mono', monospace;
   --color-black: #272324;
   --color-cream: #E4D8B4;
   --color-green: #83B799;
@@ -19,5 +15,83 @@
 }
 
 body {
-  font-family: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  color: var(--color-black);
+  overflow: hidden;
+  background: #F5F5F7;
+}
+
+/* ------ main ------ */
+
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  margin-top: 6rem;
+  height: 100%;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.calculator-grid > button {
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.btn {
+  background: var(--color-cream);
+  border: 1px solid var(--color-black);
+  opacity: 0.6;
+  transition: 200ms ease;
+}
+
+.btn:hover {
+  opacity: 0.75;
+}
+
+.calculator-grid .clear-btn {
+  background: var(--color-green);
+}
+
+.calculator-grid .del-btn {
+  background: var(--color-red);
+}
+
+.screen {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  border: 1px solid var(--color-black);
+  border-bottom: none;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px; word-break: break-all;
+}
+
+.previous-operand {
+  font-size: 20px;
+}
+
+.current-operand {
+  font-size: 40px;
+  opacity: 0.8;
+}
+
+/* ------ footer ------ */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
 }

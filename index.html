@@ -8,15 +8,35 @@
     <script src="app.js" defer></script>
   </head>
   <body>
-    <main>
-      <div class="calculator">
-        <div class="screen">
-          <div class="previous-operand"></div>
-          <div class="current-operand"></div>
-        </div>
-        <div class="buttons-grid"></div>
+    <div class="calculator-grid">
+      <div class="screen">
+        <div class="previous-operand">123</div>
+        <div class="current-operand">456</div>
       </div>
-    </main>
+      <button class="btn clear-btn span-2">CLEAR</button>
+      <button class="btn del-btn span-2">DELETE</button>
+
+      <button class="btn" data-number>7</button>
+      <button class="btn" data-number>8</button>
+      <button class="btn" data-number>9</button>
+      <button class="btn" data-operator>÷</button>
+
+      <button class="btn" data-number>4</button>
+      <button class="btn" data-number>5</button>
+      <button class="btn" data-number>6</button>
+      <button class="btn" data-operator>×</button>
+
+      <button class="btn" data-number>1</button>
+      <button class="btn" data-number>2</button>
+      <button class="btn" data-number>3</button>
+      <button class="btn" data-operator>-</button>
+
+      <button class="btn" id="float-btn" data-number>.</button>
+      <button class="btn" data-number>0</button>
+      <button class="btn" id="equal-btn">=</button>
+      <button class="btn" data-operator>+</button>
+      </div>
+    </div>
 
     <footer>
       <p>yu.calculator</p>
