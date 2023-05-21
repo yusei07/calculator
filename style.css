@@ -23,6 +23,10 @@ body {
 }
 
 /* ------ main ------ */
+main {
+  display: grid;
+  place-items: center;
+}
 
 .calculator-grid {
   display: grid;
@@ -30,8 +34,14 @@ body {
   align-content: center;
   grid-template-columns: repeat(4, 100px);
   grid-template-rows: minmax(120px, auto) repeat(5, 100px);
-  margin-top: 6rem;
   height: 100%;
+  margin-top: 2rem;
+  width: max-content;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  border: 1px solid var(--color-black);
+  border-radius: 16px;
 }
 
 .span-2 {
@@ -47,6 +57,7 @@ body {
 .btn {
   background: var(--color-cream);
   border: 1px solid var(--color-black);
+  border-radius: 8px;
   opacity: 0.6;
   transition: 200ms ease;
 }
@@ -71,10 +82,10 @@ body {
   flex-direction: column;
   padding: 10px;
   word-wrap: break-word;
+  word-break: break-all;
   border: 1px solid var(--color-black);
-  border-bottom: none;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px; word-break: break-all;
+  border-radius: 8px;
+  /* background: ; */
 }
 
 .previous-operand {
