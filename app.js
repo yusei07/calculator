@@ -5,8 +5,6 @@ const previousOperandTextEl = document.querySelector('.previous-operand');
 const clearBtn = document.querySelector('.clear-btn');
 const delBtn = document.querySelector('.del-btn');
 const equalBtn = document.querySelector('#equal-btn');
-// const floatBtn = document.querySelector('#float-btn')
-
 
 // init
 class Calculator {
@@ -27,7 +25,7 @@ class Calculator {
   }
 
   appendNumber(number) {
-    if (number === '.' && this.currentOperand.includes('.')) return;
+    if (number === '.' && this.currentOperand.includes('.')) return; // stops user from adding more than 1 float
     this.currentOperand = this.currentOperand.toString() + number.toString()
   }
 
@@ -78,25 +76,72 @@ class Calculator {
     this.previousOperand = ''
   }
 
+  // add comma automatically
+  getDisplayNumber(number) {
+    const stringNumber = number.toString()
+    // split turns the str num to arr
+    const integerDigits = parseFloat(stringNumber.split('.')[0]) // int value before period
+    const decimalDigits = stringNumber.split('.')[1] // int value after the period
+    let integerDisplay
+    // check if user inputs nothing || decimal place
+    if (isNaN(integerDigits)) {
+      integerDisplay = ''
+    } else {
+      integerDisplay = integerDigits.toLocaleString('en', {
+        maximumFractionDigits: 0 })
+    }
+
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`
+    } else {
+      return integerDisplay
+    }
+  }
+
   updateDisplay() {
-    this.currentOperandTextEl.innerText = this.currentOperand
-    this.previousOperandTextEl.textContent = this.previousOperand
+    this.currentOperandTextEl.innerText = 
+      this.getDisplayNumber(this.currentOperand)
+    // displays the previous + the operation to the end of it
+    if (this.operation != null || this.operation != undefined) {
+      this.previousOperandTextEl.innerText = 
+        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    }
   }
 
 }
+
+// instantiate (defining)
+const calculator = new Calculator(previousOperandTextEl, currentOperandTextEl);
 
 
 // keyboard input
 function handleKeyboardInput(e) {
-  if (e.key >= 0 && e.key <= 9) {
+  console.log(e)
+  if (e.key >= 0 && e.key <= 9 || e.key === '.') {
     calculator.appendNumber(e.key);
+    calculator.updateDisplay();
+  }
+  else if (e.key === 'Enter' || e.key === '=') {
+    calculator.operate();
+    calculator.updateDisplay();
+  }
+  else if (e.key === 'Backspace') {
+    calculator.delete();
+    calculator.updateDisplay();
+  }
+  else if (e.key === 'c' || e.key === 'C') {
+    calculator.clear();
+    calculator.updateDisplay();
+  }
+  else if (e.key === '+'||
+  e.key === '-' ||
+  e.key === '/' ||
+  e.key === '*' ||
+  e.key === 'x') {
+    calculator.chooseOperation(e.key)
     calculator.updateDisplay()
   }
 }
-
-
-// set
-const calculator = new Calculator(previousOperandTextEl, currentOperandTextEl);
 
 numberBtn.forEach(button => {
   button.addEventListener('click', () => {
@@ -127,4 +172,4 @@ delBtn.addEventListener('click', () => {
   calculator.updateDisplay();
 })
 
-window.addEventListener('keydown', handleKeyboardInput);
+window.addEventListener('keydown', handleKeyboardInput)
