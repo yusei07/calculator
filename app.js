@@ -105,6 +105,8 @@ class Calculator {
     if (this.operation != null || this.operation != undefined) {
       this.previousOperandTextEl.innerText = 
         `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+    } else {
+      this.previousOperandTextEl.innerText = ''
     }
   }
 
